@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transportSystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="transport_schema.xsd">
+
+   <stations>
+      <station id="S01" name="Rotkreuz"/>
+      <station id="S02" name="Zurich HB"/>
+      <station id="S03" name="Zug"/>
+      <station id="S04" name="Luzern"/>
+   </stations>
+
+   <timetable>
+      <connection id="C101">
+         <departure stationRef="S04">14:10:00</departure>
+         <arrival stationRef="S02">14:55:00</arrival>
+         <line>IR75</line>
+         <status>On Time</status>
+      </connection>
+      <connection id="C102">
+         <departure stationRef="S01">08:15:00</departure>
+         <arrival stationRef="S03">08:25:00</arrival>
+         <line>S1</line>
+         <status>Delayed 5 min</status>
+      </connection>
+   </timetable>
+
+   <tariffs>
+      <ticketType id="T01" name="Single Ticket" class="2nd">
+         <price currency="CHF">12.60</price>
+         <validity>60 min</validity>
+      </ticketType>
+      <ticketType id="T02" name="Day Pass" class="2nd">
+         <price currency="CHF">25.00</price>
+         <validity>24 hours</validity>
+      </ticketType>
+   </tariffs>
+
+</transportSystem>

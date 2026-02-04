@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:simpleType name="stationName">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Rotkreuz"/>
+         <xs:enumeration value="Zurich HB"/>
+         <xs:enumeration value="Zug"/>
+         <xs:enumeration value="Luzern"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:element name="transportSystem">
+      <xs:complexType>
+         <xs:sequence>
+
+            <xs:element name="stations">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="station" maxOccurs="unbounded">
+                        <xs:complexType>
+                           <xs:attribute name="id" type="xs:ID" use="required"/>
+                           <xs:attribute name="name" type="stationName" use="required"/>
+                        </xs:complexType>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+
+            <xs:element name="timetable">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="connection" maxOccurs="unbounded">
+                        <xs:complexType>
+                           <xs:sequence>
+                              <xs:element name="departure" type="xs:time"/>
+                              <xs:element name="arrival" type="xs:time"/>
+                              <xs:element name="line" type="xs:string"/>
+                              <xs:element name="status" type="xs:string"/>
+                           </xs:sequence>
+                           <xs:attribute name="id" type="xs:ID" use="required"/>
+                           <xs:attribute name="stationRef" type="xs:IDREF"/>
+                        </xs:complexType>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+
+            <xs:element name="tariffs">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="ticketType" maxOccurs="unbounded">
+                        <xs:complexType>
+                           <xs:sequence>
+                              <xs:element name="price">
+                                 <xs:complexType>
+                                    <xs:simpleContent>
+                                       <xs:extension base="xs:decimal">
+                                          <xs:attribute name="currency" type="xs:string" fixed="CHF"/>
+                                       </xs:extension>
+                                    </xs:simpleContent>
+                                 </xs:complexType>
+                              </xs:element>
+                              <xs:element name="validity" type="xs:string"/>
+                           </xs:sequence>
+                           <xs:attribute name="id" type="xs:ID" use="required"/>
+                           <xs:attribute name="name" type="xs:string"/>
+                           <xs:attribute name="class" type="xs:string"/>
+                        </xs:complexType>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
